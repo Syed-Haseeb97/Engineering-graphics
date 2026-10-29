@@ -1,0 +1,33 @@
+{
+  "name": "engineering-graphics",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Browser-based Engineering Graphics first-angle orthographic projection platform",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "engineering-graphics",
+    "first-angle-projection",
+    "orthographic-projection",
+    "cad",
+    "grading"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.6",
+    "eslint": "10.13.0",
+    "eslint-config-prettier": "10.1.8",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}
