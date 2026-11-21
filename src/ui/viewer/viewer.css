@@ -385,16 +385,21 @@ input[type='number']:focus {
   font-weight: 600;
 }
 
-.stage-pill span {
+.stage-pill > span:first-child {
   display: grid;
   place-items: center;
   width: 17px;
   height: 17px;
   border-radius: 50%;
   color: #fff;
-  background: #94a3b8;
+  background: #475569;
   font-size: 0.65rem;
   font-weight: 700;
+}
+
+.stage-pill .stage-label {
+  color: inherit;
+  background: transparent;
 }
 
 .stage-pill:hover {
@@ -501,7 +506,7 @@ input[type='number']:focus {
 }
 
 .legend-hp {
-  color: #0d9488;
+  color: #0f766e;
 }
 
 .legend-vp {
@@ -509,7 +514,7 @@ input[type='number']:focus {
 }
 
 .legend-pp {
-  color: #d97706;
+  color: #b45309;
 }
 
 .panel-content {

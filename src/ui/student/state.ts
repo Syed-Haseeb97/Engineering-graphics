@@ -27,7 +27,7 @@ export function createLabProfile(): StudentProfile {
 
 export class StudentStateManager {
   public student: StudentProfile | null = null;
-  public screen: ScreenType = 'assignments';
+  public screen: ScreenType = 'login';
   public problemState: ProblemState | null = null;
   public checkFeedback: CheckFeedback | null = null;
   public finalGrade: FinalGradeResult | null = null;
@@ -70,8 +70,6 @@ export class StudentStateManager {
 
   private restoreSession(): void {
     if (typeof window === 'undefined') {
-      this.student = createLabProfile();
-      this.screen = 'assignments';
       return;
     }
 
@@ -89,19 +87,17 @@ export class StudentStateManager {
       // Fall through to a fresh local profile if localStorage is corrupt.
     }
 
-    // First visit on a shared lab machine: enter immediately, no credentials.
-    if (!this.student) {
-      this.student = createLabProfile();
-      localStorage.setItem(STORAGE_KEY_PROFILE, JSON.stringify(this.student));
-    }
-
-    if (this.problemState) {
-      // Resume the drawing that was open when the browser/tab was closed.
-      this.screen = 'problem';
-      const elapsed = Math.max(0, Math.floor((Date.now() - this.problemState.startedAt) / 1000));
-      this.startTimer(elapsed);
+    if (this.student) {
+      if (this.problemState) {
+        // Resume the drawing that was open when the browser/tab was closed.
+        this.screen = 'problem';
+        const elapsed = Math.max(0, Math.floor((Date.now() - this.problemState.startedAt) / 1000));
+        this.startTimer(elapsed);
+      } else {
+        this.screen = 'assignments';
+      }
     } else {
-      this.screen = 'assignments';
+      this.screen = 'login';
     }
   }
 

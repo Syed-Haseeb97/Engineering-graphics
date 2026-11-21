@@ -187,8 +187,17 @@ export class DraftApp {
 }
 
 // Auto-instantiate on page load
-if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', () => {
-    (window as unknown as { __draftApp?: DraftApp }).__draftApp = new DraftApp();
-  });
+function mountDraftApp() {
+  const target = window as unknown as { __draftApp?: DraftApp };
+  if (!target.__draftApp) {
+    target.__draftApp = new DraftApp();
+  }
+}
+
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', mountDraftApp);
+  } else {
+    mountDraftApp();
+  }
 }

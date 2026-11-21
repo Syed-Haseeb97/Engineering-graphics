@@ -6,12 +6,18 @@ export * from './state';
 export * from './student-app';
 export * from './types';
 
-// Mount the Student App on DOMContentLoaded if in browser
+// Mount the Student App if in browser
+function mount() {
+  const container = document.getElementById('app');
+  if (container && !container.hasChildNodes()) {
+    new StudentApp(container);
+  }
+}
+
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('app');
-    if (container) {
-      new StudentApp(container);
-    }
-  });
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', mount);
+  } else {
+    mount();
+  }
 }

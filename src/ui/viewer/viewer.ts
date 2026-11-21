@@ -280,8 +280,16 @@ declare global {
 }
 
 // Bootstrap on DOM ready
-if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', () => {
+function mountViewerApp() {
+  if (!window.__teachingViewerApp) {
     window.__teachingViewerApp = new TeachingViewerApp();
-  });
+  }
+}
+
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', mountViewerApp);
+  } else {
+    mountViewerApp();
+  }
 }

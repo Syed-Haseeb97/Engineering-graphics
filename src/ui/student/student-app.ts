@@ -95,8 +95,7 @@ export class StudentApp {
 
   private async renderAssignments(): Promise<void> {
     if (!this.state.student) {
-      // Shared lab machine: enter with a local profile instead of a login wall.
-      this.state.updateStudent(createLabProfile());
+      this.state.setScreen('login');
       return;
     }
 
