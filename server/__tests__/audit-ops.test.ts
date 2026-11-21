@@ -497,7 +497,7 @@ describe('Operational Safety & Audit Suite', () => {
   describe('Secrets Scanning Engine', () => {
     it('scans the codebase and confirms zero committed private keys or salts', async () => {
       const scanResult = await scanForSecrets({
-        rootDir: 'D:/projects/engineering graphics',
+        rootDir: process.cwd(),
       });
 
       expect(scanResult.leaksFound).toBe(0);
