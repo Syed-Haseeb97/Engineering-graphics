@@ -83,7 +83,9 @@ test.describe('Accessibility & Keyboard Navigation E2E Suite', () => {
     await page.addInitScript(() => {
       try {
         localStorage.clear();
-      } catch {}
+      } catch {
+        // Ignore storage errors in restricted contexts
+      }
     });
     await page.goto('/student.html');
 
@@ -255,7 +257,9 @@ test.describe('Accessibility & Keyboard Navigation E2E Suite', () => {
     await page.addInitScript(() => {
       try {
         localStorage.clear();
-      } catch {}
+      } catch {
+        // Ignore storage errors in restricted contexts
+      }
     });
     await page.goto('/student.html');
     await auditCurrentState('Student Login View', '/student.html');
