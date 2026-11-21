@@ -31,7 +31,11 @@ export class TeachingViewerApp {
 
     const inspectorContainer = document.getElementById('inspector-container');
     if (inspectorContainer) {
-      this.inspector3D = new Inspector3D(inspectorContainer);
+      try {
+        this.inspector3D = new Inspector3D(inspectorContainer);
+      } catch (e) {
+        console.warn('WebGL 3D inspector unavailable in this environment:', e);
+      }
     }
 
     this.updateFormFields();
