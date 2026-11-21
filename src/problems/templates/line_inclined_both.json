@@ -1,0 +1,64 @@
+{
+  "id": "line_inclined_both",
+  "topic": "PROJECTION_OF_LINES",
+  "shape": "LINE",
+  "param_schema": {
+    "trueLength": {
+      "min": 60,
+      "max": 85,
+      "step": 5,
+      "unit": "mm",
+      "description": "True length of line AB"
+    },
+    "theta": {
+      "min": 25,
+      "max": 40,
+      "step": 5,
+      "unit": "deg",
+      "description": "True inclination angle to HP"
+    },
+    "phi": {
+      "min": 20,
+      "max": 35,
+      "step": 5,
+      "unit": "deg",
+      "description": "True inclination angle to VP"
+    },
+    "distHP": {
+      "min": 15,
+      "max": 30,
+      "step": 5,
+      "unit": "mm",
+      "description": "Elevation of end A above HP"
+    },
+    "distVP": {
+      "min": 20,
+      "max": 35,
+      "step": 5,
+      "unit": "mm",
+      "description": "Distance of end A in front of VP"
+    }
+  },
+  "placement_rules": {
+    "restingPlane": "HP",
+    "restingFeature": "point",
+    "tiltStage2": "TILT_TO_HP",
+    "tiltStage3": "TILT_TO_VP"
+  },
+  "views_required": ["FRONT_VIEW", "TOP_VIEW"],
+  "validity_predicates": {
+    "requireFirstQuadrant": true,
+    "maxCombinedTiltDeg": 75,
+    "minFeatureSizeMm": 3,
+    "minApparentLengthMm": 20,
+    "maxSheetWidthMm": 400,
+    "maxSheetHeightMm": 280
+  },
+  "rubric": {
+    "recall": 0.25,
+    "precision": 0.35,
+    "lineType": 0.25,
+    "dimensions": 0.15
+  },
+  "statement": "A straight line AB, {trueLength} mm long, has its end A {distHP} mm above the HP and {distVP} mm in front of the VP. The line is inclined at {theta}° to the HP and {phi}° to the VP. Draw its front and top views, showing its apparent lengths and apparent inclinations."
+}

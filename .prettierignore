@@ -2,3 +2,7 @@ node_modules/
 dist/
 coverage/
 reference/
+.playwright-browsers/
+.npm-cache/
+test-results/
+playwright-report/

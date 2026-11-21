@@ -1,0 +1,56 @@
+{
+  "id": "prism_inclined_hp",
+  "topic": "PROJECTION_OF_SOLIDS",
+  "shape": "PRISM",
+  "param_schema": {
+    "baseSide": {
+      "min": 25,
+      "max": 40,
+      "step": 5,
+      "unit": "mm",
+      "description": "Base edge length of square prism"
+    },
+    "height": {
+      "min": 50,
+      "max": 75,
+      "step": 5,
+      "unit": "mm",
+      "description": "Axis length of prism"
+    },
+    "theta": {
+      "min": 30,
+      "max": 50,
+      "step": 5,
+      "unit": "deg",
+      "description": "Axis inclination to HP"
+    },
+    "distVP": {
+      "min": 20,
+      "max": 35,
+      "step": 5,
+      "unit": "mm",
+      "description": "Distance of resting edge in front of VP"
+    }
+  },
+  "placement_rules": {
+    "restingPlane": "HP",
+    "restingFeature": "edge",
+    "axisAlignmentStage1": "PERPENDICULAR_TO_HP",
+    "tiltStage2": "TILT_TO_HP"
+  },
+  "views_required": ["FRONT_VIEW", "TOP_VIEW"],
+  "validity_predicates": {
+    "requireFirstQuadrant": true,
+    "minFeatureSizeMm": 3,
+    "minApparentLengthMm": 20,
+    "maxSheetWidthMm": 420,
+    "maxSheetHeightMm": 280
+  },
+  "rubric": {
+    "recall": 0.25,
+    "precision": 0.35,
+    "lineType": 0.25,
+    "dimensions": 0.15
+  },
+  "statement": "A square prism, base {baseSide} mm side and axis {height} mm long, has an edge of its base resting on the HP. The axis of the prism is inclined at {theta}° to the HP and is parallel to the VP. The resting edge is {distVP} mm in front of the VP. Draw its front and top views."
+}

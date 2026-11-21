@@ -1,0 +1,56 @@
+{
+  "id": "pyramid_inclined_vp",
+  "topic": "PROJECTION_OF_SOLIDS",
+  "shape": "PYRAMID",
+  "param_schema": {
+    "baseSide": {
+      "min": 25,
+      "max": 35,
+      "step": 5,
+      "unit": "mm",
+      "description": "Base side length of pentagonal pyramid"
+    },
+    "height": {
+      "min": 50,
+      "max": 70,
+      "step": 5,
+      "unit": "mm",
+      "description": "Axis length of pyramid"
+    },
+    "phi": {
+      "min": 30,
+      "max": 45,
+      "step": 5,
+      "unit": "deg",
+      "description": "Axis inclination to VP"
+    },
+    "distHP": {
+      "min": 20,
+      "max": 35,
+      "step": 5,
+      "unit": "mm",
+      "description": "Distance of base edge above HP"
+    }
+  },
+  "placement_rules": {
+    "restingPlane": "VP",
+    "restingFeature": "edge",
+    "axisAlignmentStage1": "PERPENDICULAR_TO_VP",
+    "tiltStage2": "TILT_TO_VP"
+  },
+  "views_required": ["FRONT_VIEW", "TOP_VIEW"],
+  "validity_predicates": {
+    "requireFirstQuadrant": true,
+    "minFeatureSizeMm": 3,
+    "minApparentLengthMm": 20,
+    "maxSheetWidthMm": 420,
+    "maxSheetHeightMm": 280
+  },
+  "rubric": {
+    "recall": 0.25,
+    "precision": 0.35,
+    "lineType": 0.25,
+    "dimensions": 0.15
+  },
+  "statement": "A regular pentagonal pyramid, base {baseSide} mm side and axis {height} mm long, has an edge of its base in the VP. The axis of the pyramid is inclined at {phi}° to the VP and parallel to the HP, with the base edge {distHP} mm above the HP. Draw its projections."
+}

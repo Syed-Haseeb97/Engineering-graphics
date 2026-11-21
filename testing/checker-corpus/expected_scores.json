@@ -1,0 +1,40 @@
+{
+  "description": "Expected grading score ranges across 7 evaluation cases for 3 syllabus templates",
+  "cases": {
+    "exact": {
+      "min": 95,
+      "max": 100,
+      "pedagogicalRationale": "Exact redrawn submission should receive near-perfect or 100% score."
+    },
+    "jitter_0.2mm": {
+      "min": 90,
+      "max": 100,
+      "pedagogicalRationale": "0.2 mm manual drafting jitter is within the 0.5 mm tolerance window and should not incur penalty."
+    },
+    "missing_hidden": {
+      "min": 70,
+      "max": 88,
+      "pedagogicalRationale": "Missing a hidden detail line drops recall and overall score by 12% to 30% depending on template edge count."
+    },
+    "extra_line": {
+      "min": 72,
+      "max": 88,
+      "pedagogicalRationale": "Drawing spurious extra lines drops precision and overall score by 12% to 28%."
+    },
+    "swap_line_type": {
+      "min": 70,
+      "max": 88,
+      "pedagogicalRationale": "Misclassifying line type (e.g. solid outline drawn as dashed) retains geometric recall but loses line-type points."
+    },
+    "shifted": {
+      "min": 95,
+      "max": 100,
+      "pedagogicalRationale": "Translating drawing on sheet must be neutralized by XY line alignment so placement is not penalized."
+    },
+    "badly_wrong": {
+      "min": 0,
+      "max": 40,
+      "pedagogicalRationale": "Gross geometric divergence or unrecognizable shapes should score under 40%."
+    }
+  }
+}

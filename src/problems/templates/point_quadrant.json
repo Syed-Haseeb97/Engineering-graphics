@@ -1,0 +1,38 @@
+{
+  "id": "point_quadrant",
+  "topic": "PROJECTION_OF_POINTS",
+  "shape": "POINT",
+  "param_schema": {
+    "distHP": {
+      "min": 15,
+      "max": 65,
+      "step": 5,
+      "unit": "mm",
+      "description": "Elevation above Horizontal Plane"
+    },
+    "distVP": {
+      "min": 15,
+      "max": 65,
+      "step": 5,
+      "unit": "mm",
+      "description": "Distance in front of Vertical Plane"
+    }
+  },
+  "placement_rules": {
+    "restingPlane": "HP",
+    "restingFeature": "point"
+  },
+  "views_required": ["FRONT_VIEW", "TOP_VIEW"],
+  "validity_predicates": {
+    "requireFirstQuadrant": true,
+    "maxSheetWidthMm": 350,
+    "maxSheetHeightMm": 250
+  },
+  "rubric": {
+    "recall": 0.25,
+    "precision": 0.35,
+    "lineType": 0.25,
+    "dimensions": 0.15
+  },
+  "statement": "A point P is situated in the first quadrant, {distHP} mm above the Horizontal Plane (HP) and {distVP} mm in front of the Vertical Plane (VP). Draw its projections and state the distance between its front and top views."
+}

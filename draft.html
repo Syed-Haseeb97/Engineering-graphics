@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Engineering Graphics — 2D Precision Drafting</title>
+    <style>
+      :root {
+        --primary: #1976d2;
+        --primary-dark: #115293;
+        --bg-main: #f8fafc;
+        --surface: #ffffff;
+        --border: #e2e8f0;
+        --text: #1e293b;
+        --text-muted: #64748b;
+        --active-bg: #e0f2fe;
+        --active-border: #0284c7;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg-main);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Header */
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .logo-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .badge {
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 9999px;
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      select, button, input {
+        font-family: inherit;
+        font-size: 0.85rem;
+      }
+
+      .select-input {
+        padding: 5px 8px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+      }
+
+      .btn {
+        padding: 5px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-weight: 500;
+        color: var(--text);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.15s ease;
+      }
+
+      .btn:hover {
+        background: #f1f5f9;
+      }
+
+      .btn.active {
+        background: var(--active-bg);
+        border-color: var(--active-border);
+        color: #075985;
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #ffffff;
+        border-color: var(--primary);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Main Workspace Layout */
+      .workspace {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Left Toolbar */
+      .toolbar {
+        width: 140px;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px;
+        overflow-y: auto;
+        flex-shrink: 0;
+      }
+
+      .toolbar-group-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin: 6px 4px 2px 4px;
+        letter-spacing: 0.05em;
+      }
+
+      .tool-btn {
+        width: 100%;
+        text-align: left;
+        padding: 6px 8px;
+        border-radius: 6px;
+        border: 1px solid transparent;
+        background: transparent;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text);
+      }
+
+      .tool-btn:hover {
+        background: #f1f5f9;
+      }
+
+      .tool-btn.active {
+        background: var(--active-bg);
+        border-color: var(--active-border);
+        color: #075985;
+        font-weight: 600;
+      }
+
+      /* Canvas Container */
+      .canvas-container {
+        flex: 1;
+        height: 100%;
+        position: relative;
+        background: #ffffff;
+        cursor: crosshair;
+      }
+
+      #draft-canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Bottom Command Bar & Status Bar */
+      footer {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        padding: 6px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex-shrink: 0;
+      }
+
+      .command-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .command-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      .command-input {
+        flex: 1;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 0.85rem;
+      }
+
+      .status-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .prompt-text {
+        font-weight: 600;
+        color: #0369a1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Header -->
+    <header>
+      <div class="logo-group">
+        <h1 class="logo-title">Engineering Graphics</h1>
+        <span class="badge">2D Precision Drafting</span>
+      </div>
+
+      <div class="header-controls">
+        <label for="select-line-type" style="font-size: 0.8rem; font-weight: 500;">Line Type:</label>
+        <select id="select-line-type" class="select-input">
+          <option value="continuous" selected>Continuous (Thick Visible)</option>
+          <option value="dashed">Dashed (Hidden Detail)</option>
+          <option value="centre">Centre Line (Long-Dot)</option>
+          <option value="thin">Thin (Construction Ray)</option>
+        </select>
+
+        <button id="btn-ortho" class="btn" title="Toggle Ortho Mode (F8)">Ortho [F8]</button>
+        <button id="btn-undo" class="btn" title="Undo (Ctrl+Z)">↶ Undo</button>
+        <button id="btn-redo" class="btn" title="Redo (Ctrl+Y)">↷ Redo</button>
+        <button id="btn-export-log" class="btn" title="Export Command Audit Log JSON">Export Log</button>
+        <button id="btn-clear" class="btn" title="Clear Canvas">Clear</button>
+
+        <a href="/" class="btn btn-primary" id="nav-to-viewer" style="text-decoration: none;">&larr; Teaching Viewer</a>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="workspace">
+      <!-- Left Tool Palette -->
+      <aside class="toolbar">
+        <div class="toolbar-group-label">Draw</div>
+        <button id="tool-line" class="tool-btn active">Line</button>
+        <button id="tool-circle-cr" class="tool-btn">Circle (CR)</button>
+        <button id="tool-circle-2p" class="tool-btn">Circle (2P)</button>
+        <button id="tool-arc-3p" class="tool-btn">Arc (3P)</button>
+        <button id="tool-arc-cse" class="tool-btn">Arc (CSE)</button>
+        <button id="tool-polyline" class="tool-btn">Polyline</button>
+        <button id="tool-projector" class="tool-btn">Projector</button>
+
+        <div class="toolbar-group-label">Dimensions</div>
+        <button id="tool-dim-linear" class="tool-btn">Dimension (Lin)</button>
+        <button id="tool-dim-radius" class="tool-btn">Dimension (Rad)</button>
+
+        <div class="toolbar-group-label">Modify</div>
+        <button id="tool-move" class="tool-btn">Move</button>
+        <button id="tool-copy" class="tool-btn">Copy</button>
+        <button id="tool-trim" class="tool-btn">Trim</button>
+        <button id="tool-offset" class="tool-btn">Offset</button>
+        <button id="tool-erase" class="tool-btn">Erase</button>
+      </aside>
+
+      <!-- Interactive 2D Canvas -->
+      <main class="canvas-container">
+        <canvas id="draft-canvas"></canvas>
+      </main>
+    </div>
+
+    <!-- Bottom Status & Command Bar -->
+    <footer>
+      <form id="form-command" class="command-row">
+        <span class="command-label">Command:</span>
+        <input
+          id="input-command-bar"
+          type="text"
+          class="command-input"
+          placeholder="Type coordinate (e.g. 50,50), polar (e.g. 50<45), distance (e.g. 40), or Enter/Esc"
+          autocomplete="off"
+        />
+        <button type="submit" class="btn">Enter</button>
+      </form>
+      <div class="status-row">
+        <div>Prompt: <span id="status-prompt" class="prompt-text">Specify first point:</span></div>
+        <div style="display: flex; gap: 16px;">
+          <span id="status-autosave">Autosave ready</span>
+          <span id="status-entities">0 entities</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/ui/draft/draft-app.ts"></script>
+  </body>
+</html>

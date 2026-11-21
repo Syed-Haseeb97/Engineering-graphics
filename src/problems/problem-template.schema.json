@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProblemTemplate",
+  "description": "Specification schema for Engineering Graphics parametric problem templates",
+  "type": "object",
+  "required": [
+    "id",
+    "topic",
+    "shape",
+    "param_schema",
+    "placement_rules",
+    "views_required",
+    "validity_predicates",
+    "rubric",
+    "statement"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$"
+    },
+    "topic": {
+      "type": "string",
+      "enum": [
+        "PROJECTION_OF_POINTS",
+        "PROJECTION_OF_LINES",
+        "PROJECTION_OF_PLANES",
+        "PROJECTION_OF_SOLIDS"
+      ]
+    },
+    "shape": {
+      "type": "string",
+      "enum": [
+        "POINT",
+        "LINE",
+        "TRIANGLE",
+        "RECTANGLE",
+        "CIRCLE_LAMINAE",
+        "PRISM",
+        "PYRAMID",
+        "CYLINDER",
+        "CONE"
+      ]
+    },
+    "param_schema": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["min", "max", "step", "unit"],
+        "properties": {
+          "min": { "type": "number" },
+          "max": { "type": "number" },
+          "step": { "type": "number", "exclusiveMinimum": 0 },
+          "unit": { "type": "string", "enum": ["mm", "deg"] },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "placement_rules": {
+      "type": "object",
+      "properties": {
+        "restingPlane": { "type": "string", "enum": ["HP", "VP"] },
+        "restingFeature": { "type": "string", "enum": ["corner", "edge", "generator", "face", "point"] },
+        "axisAlignmentStage1": { "type": "string", "enum": ["PERPENDICULAR_TO_HP", "PERPENDICULAR_TO_VP"] },
+        "tiltStage2": { "type": "string", "enum": ["TILT_TO_HP", "TILT_TO_VP"] },
+        "tiltStage3": { "type": "string", "enum": ["TILT_TO_VP", "TILT_TO_HP"] }
+      }
+    },
+    "views_required": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["FRONT_VIEW", "TOP_VIEW", "LEFT_SIDE_VIEW", "RIGHT_SIDE_VIEW"]
+      }
+    },
+    "validity_predicates": {
+      "type": "object",
+      "properties": {
+        "maxSheetWidthMm": { "type": "number" },
+        "maxSheetHeightMm": { "type": "number" },
+        "minFeatureSizeMm": { "type": "number" },
+        "minApparentLengthMm": { "type": "number" },
+        "maxCombinedTiltDeg": { "type": "number" },
+        "requireFirstQuadrant": { "type": "boolean" }
+      }
+    },
+    "rubric": {
+      "type": "object",
+      "required": ["recall", "precision", "lineType", "dimensions"],
+      "properties": {
+        "recall": { "type": "number", "minimum": 0, "maximum": 1 },
+        "precision": { "type": "number", "minimum": 0, "maximum": 1 },
+        "lineType": { "type": "number", "minimum": 0, "maximum": 1 },
+        "dimensions": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 10
+    }
+  }
+}

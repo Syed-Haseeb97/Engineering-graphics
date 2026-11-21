@@ -1,0 +1,38 @@
+{
+  "id": "ndbhatt_ch13_prob03",
+  "source": {
+    "book": "Elementary Engineering Drawing",
+    "author": "N.D. Bhatt",
+    "chapter": 13,
+    "problemNumber": 3,
+    "page": 301
+  },
+  "statement": "A regular hexagonal pyramid, base 25 mm side and axis 50 mm long, rests on one of its base corners on the H.P. such that its axis is inclined at 45° to the H.P. and parallel to the V.P. Draw its projections.",
+  "solid": {
+    "type": "PYRAMID",
+    "sides": 6,
+    "baseSize": 25,
+    "height": 50
+  },
+  "placement": {
+    "initialAxis": "PERPENDICULAR_TO_HP",
+    "baseRotationDeg": 0,
+    "baseRotationRad": 0,
+    "thetaDeg": 45,
+    "thetaRad": 0.7853981634,
+    "distanceHP": 0,
+    "distanceVP": 20,
+    "restingCondition": "Resting on one base corner on HP with axis inclined at 45° to HP"
+  },
+  "expected": {
+    "frontView": {
+      "apparentAxisLength": 50,
+      "apparentAxisAngleDeg": 45
+    },
+    "topView": {
+      "apparentAxisLength": 35.36
+    }
+  },
+  "needsHumanCheck": false,
+  "notes": "Axis true length is 50 mm in elevation; foreshortened top view axis length is 50 * cos(45°) = 35.355 mm."
+}

@@ -1,0 +1,36 @@
+{
+  "id": "ndbhatt_ch13_prob05",
+  "source": {
+    "book": "Elementary Engineering Drawing",
+    "author": "N.D. Bhatt",
+    "chapter": 13,
+    "problemNumber": 5,
+    "page": 304
+  },
+  "statement": "A cylinder 40 mm diameter and 60 mm long has its axis inclined at 30° to the H.P. and parallel to the V.P. Draw its projections when one of its base points is on the H.P.",
+  "solid": {
+    "type": "CYLINDER",
+    "baseSize": 20,
+    "height": 60
+  },
+  "placement": {
+    "initialAxis": "PERPENDICULAR_TO_HP",
+    "thetaDeg": 30,
+    "thetaRad": 0.5235987756,
+    "distanceHP": 0,
+    "distanceVP": 25,
+    "restingCondition": "Base perimeter point on HP, axis inclined at 30° to HP"
+  },
+  "expected": {
+    "frontView": {
+      "apparentAxisLength": 60,
+      "apparentAxisAngleDeg": 30,
+      "height": 64.64
+    },
+    "topView": {
+      "apparentAxisLength": 51.96
+    }
+  },
+  "needsHumanCheck": false,
+  "notes": "Axis in plan is foreshortened to 60 * cos(30°) = 51.96 mm. Overall front view height is 60 * sin(30°) + 40 * cos(30°) = 30 + 34.64 = 64.64 mm."
+}

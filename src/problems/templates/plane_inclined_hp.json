@@ -1,0 +1,63 @@
+{
+  "id": "plane_inclined_hp",
+  "topic": "PROJECTION_OF_PLANES",
+  "shape": "RECTANGLE",
+  "param_schema": {
+    "sideA": {
+      "min": 30,
+      "max": 45,
+      "step": 5,
+      "unit": "mm",
+      "description": "Length of resting edge AB"
+    },
+    "sideB": {
+      "min": 50,
+      "max": 70,
+      "step": 5,
+      "unit": "mm",
+      "description": "Length of adjacent edge BC"
+    },
+    "theta": {
+      "min": 30,
+      "max": 50,
+      "step": 5,
+      "unit": "deg",
+      "description": "Inclination of plate surface to HP"
+    },
+    "edgeAngle": {
+      "min": 30,
+      "max": 45,
+      "step": 5,
+      "unit": "deg",
+      "description": "Inclination of resting edge to VP"
+    },
+    "distVP": {
+      "min": 15,
+      "max": 30,
+      "step": 5,
+      "unit": "mm",
+      "description": "Distance of nearest corner in front of VP"
+    }
+  },
+  "placement_rules": {
+    "restingPlane": "HP",
+    "restingFeature": "edge",
+    "tiltStage2": "TILT_TO_HP",
+    "tiltStage3": "TILT_TO_VP"
+  },
+  "views_required": ["FRONT_VIEW", "TOP_VIEW"],
+  "validity_predicates": {
+    "requireFirstQuadrant": true,
+    "minFeatureSizeMm": 3,
+    "minApparentLengthMm": 15,
+    "maxSheetWidthMm": 420,
+    "maxSheetHeightMm": 280
+  },
+  "rubric": {
+    "recall": 0.25,
+    "precision": 0.35,
+    "lineType": 0.25,
+    "dimensions": 0.15
+  },
+  "statement": "A rectangular lamina ABCD of size {sideA} mm × {sideB} mm has its shorter edge AB resting on the HP. The surface of the lamina is inclined at {theta}° to the HP, and the edge AB makes an angle of {edgeAngle}° with the VP, with its nearest corner {distVP} mm in front of the VP. Draw its front and top views."
+}

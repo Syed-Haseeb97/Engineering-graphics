@@ -1,0 +1,86 @@
+[
+  {
+    "id": "case_01_cube_simple",
+    "description": "50mm Cube in simple position resting on HP, 20mm in front of VP",
+    "solidType": "PRISM",
+    "params": { "sides": 4, "baseSize": 50, "height": 50 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "distanceHP": 0, "distanceVP": 20 }
+  },
+  {
+    "id": "case_02_triangular_prism_simple",
+    "description": "Regular triangular prism (base 40mm, height 60mm) resting on HP, base edge parallel to VP",
+    "solidType": "PRISM",
+    "params": { "sides": 3, "baseSize": 40, "height": 60 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "baseRotationRad": 0, "distanceHP": 0, "distanceVP": 15 }
+  },
+  {
+    "id": "case_03_hexagonal_prism_inclined_hp",
+    "description": "Hexagonal prism (base 30mm, height 65mm) with axis inclined at 30° to HP",
+    "solidType": "PRISM",
+    "params": { "sides": 6, "baseSize": 30, "height": 65 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "thetaRad": 0.5235987756, "distanceHP": 5, "distanceVP": 20 }
+  },
+  {
+    "id": "case_04_square_pyramid_simple",
+    "description": "Square pyramid (base 40mm, height 60mm) resting on HP with base corners symmetrical",
+    "solidType": "PYRAMID",
+    "params": { "sides": 4, "baseSize": 40, "height": 60 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "distanceHP": 0, "distanceVP": 25 }
+  },
+  {
+    "id": "case_05_triangular_pyramid_inclined_hp",
+    "description": "Triangular pyramid (base 45mm, height 60mm) with axis inclined at 45° to HP",
+    "solidType": "PYRAMID",
+    "params": { "sides": 3, "baseSize": 45, "height": 60 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "thetaRad": 0.7853981634, "distanceHP": 0, "distanceVP": 20 }
+  },
+  {
+    "id": "case_06_pentagonal_pyramid_inclined_both",
+    "description": "Pentagonal pyramid (base 35mm, height 65mm) inclined to both planes (theta=45°, phi=30°)",
+    "solidType": "PYRAMID",
+    "params": { "sides": 5, "baseSize": 35, "height": 65 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "thetaRad": 0.7853981634, "phiRad": 0.5235987756, "distanceHP": 10, "distanceVP": 20 }
+  },
+  {
+    "id": "case_07_cylinder_simple",
+    "description": "Cylinder (diameter 40mm, height 60mm) in simple position axis perpendicular to HP",
+    "solidType": "CYLINDER",
+    "params": { "baseSize": 20, "height": 60 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "distanceHP": 0, "distanceVP": 25 }
+  },
+  {
+    "id": "case_08_cylinder_inclined_hp",
+    "description": "Cylinder (diameter 40mm, height 60mm) with axis inclined at 30° to HP",
+    "solidType": "CYLINDER",
+    "params": { "baseSize": 20, "height": 60 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "thetaRad": 0.5235987756, "distanceHP": 5, "distanceVP": 20 }
+  },
+  {
+    "id": "case_09_cone_simple",
+    "description": "Cone (diameter 50mm, height 70mm) resting on base on HP",
+    "solidType": "CONE",
+    "params": { "baseSize": 25, "height": 70 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "distanceHP": 0, "distanceVP": 30 }
+  },
+  {
+    "id": "case_10_cone_inclined_hp",
+    "description": "Cone (diameter 50mm, height 70mm) with axis inclined at 45° to HP",
+    "solidType": "CONE",
+    "params": { "baseSize": 25, "height": 70 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "thetaRad": 0.7853981634, "distanceHP": 0, "distanceVP": 25 }
+  },
+  {
+    "id": "case_11_frustum_cone_simple",
+    "description": "Frustum of cone (bottom dia 60mm, top dia 30mm, height 50mm) resting on HP",
+    "solidType": "FRUSTUM_CONE",
+    "params": { "baseSize": 30, "topSize": 15, "height": 50 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "distanceHP": 0, "distanceVP": 25 }
+  },
+  {
+    "id": "case_12_frustum_pyramid_inclined",
+    "description": "Square pyramid frustum (base 40mm, top 20mm, height 50mm) axis inclined at 60° to HP",
+    "solidType": "FRUSTUM_PYRAMID",
+    "params": { "sides": 4, "baseSize": 40, "topSize": 20, "height": 50 },
+    "placement": { "initialAxis": "PERPENDICULAR_TO_HP", "thetaRad": 1.0471975512, "distanceHP": 5, "distanceVP": 20 }
+  }
+]

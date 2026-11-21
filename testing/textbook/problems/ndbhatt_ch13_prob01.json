@@ -1,0 +1,41 @@
+{
+  "id": "ndbhatt_ch13_prob01",
+  "source": {
+    "book": "Elementary Engineering Drawing",
+    "author": "N.D. Bhatt",
+    "chapter": 13,
+    "problemNumber": 1,
+    "page": 298
+  },
+  "statement": "A square prism, base 40 mm side and height 65 mm, has its base on the H.P. and its vertical faces equally inclined to the V.P. Draw its projections.",
+  "solid": {
+    "type": "PRISM",
+    "sides": 4,
+    "baseSize": 40,
+    "height": 65
+  },
+  "placement": {
+    "initialAxis": "PERPENDICULAR_TO_HP",
+    "baseRotationDeg": 0,
+    "baseRotationRad": 0,
+    "thetaDeg": 90,
+    "thetaRad": 1.5707963268,
+    "distanceHP": 0,
+    "distanceVP": 20,
+    "restingCondition": "Base resting on HP, vertical faces equally inclined at 45° to VP"
+  },
+  "expected": {
+    "frontView": {
+      "height": 65,
+      "width": 56.57,
+      "minZ": 0,
+      "maxZ": 65
+    },
+    "topView": {
+      "width": 56.57,
+      "length": 56.57
+    }
+  },
+  "needsHumanCheck": false,
+  "notes": "Simple position. Width across corners is 40 * sqrt(2) = 56.5685 mm in both front and top views."
+}

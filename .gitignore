@@ -5,3 +5,8 @@ dist/
 *.log
 coverage/
 reference/
+.playwright-browsers/
+.npm-cache/
+test-results/
+playwright-report/
+.perf-results/

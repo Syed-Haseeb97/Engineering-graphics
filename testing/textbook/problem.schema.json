@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://engineering-graphics.dev/schemas/textbook-problem.schema.json",
+  "title": "TextbookProblem",
+  "description": "Standardized schema for Engineering Graphics textbook projection regression problems.",
+  "type": "object",
+  "required": [
+    "id",
+    "source",
+    "statement",
+    "solid",
+    "placement",
+    "expected"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Unique identifier for the textbook problem (e.g., ndbhatt_ch13_prob01)"
+    },
+    "source": {
+      "type": "object",
+      "required": ["book", "chapter"],
+      "properties": {
+        "book": { "type": "string", "description": "Textbook title (e.g., Engineering Drawing)" },
+        "author": { "type": "string", "description": "Author (e.g., N.D. Bhatt, V.M. Panchal)" },
+        "edition": { "type": "string", "description": "Textbook edition or publication year" },
+        "chapter": { "type": ["string", "number"], "description": "Chapter name or number (e.g., 13 or Projections of Solids)" },
+        "problemNumber": { "type": ["string", "number"], "description": "Exercise / Problem number in textbook" },
+        "page": { "type": ["string", "number"], "description": "Page number in reference edition" },
+        "figure": { "type": "string", "description": "Figure reference in textbook (e.g., Fig. 13-14)" }
+      },
+      "additionalProperties": false
+    },
+    "statement": {
+      "type": "string",
+      "description": "Verbatim textbook problem statement text."
+    },
+    "solid": {
+      "type": "object",
+      "required": ["type", "baseSize", "height"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["PRISM", "PYRAMID", "CYLINDER", "CONE", "FRUSTUM_CONE", "FRUSTUM_PYRAMID"]
+        },
+        "sides": {
+          "type": "integer",
+          "enum": [3, 4, 5, 6],
+          "description": "Number of regular polygon base sides for prisms and pyramids"
+        },
+        "baseSize": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Base side length (for regular polygon) or radius (for cylinder/cone) in mm"
+        },
+        "topSize": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Top side length or top radius for frustums in mm"
+        },
+        "height": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total axis height of solid in mm"
+        }
+      },
+      "additionalProperties": false
+    },
+    "placement": {
+      "type": "object",
+      "properties": {
+        "initialAxis": {
+          "type": "string",
+          "enum": ["PERPENDICULAR_TO_HP", "PERPENDICULAR_TO_VP"],
+          "default": "PERPENDICULAR_TO_HP"
+        },
+        "baseRotationDeg": { "type": "number", "description": "Initial rotation around axis in degrees" },
+        "baseRotationRad": { "type": "number", "description": "Initial rotation around axis in radians" },
+        "thetaDeg": { "type": "number", "description": "Stage 2 axis inclination angle to HP in degrees" },
+        "thetaRad": { "type": "number", "description": "Stage 2 axis inclination angle to HP in radians" },
+        "phiDeg": { "type": "number", "description": "Stage 3 axis inclination angle to VP in degrees" },
+        "phiRad": { "type": "number", "description": "Stage 3 axis inclination angle to VP in radians" },
+        "distanceHP": { "type": "number", "default": 0, "description": "Distance of lowest point above HP in mm" },
+        "distanceVP": { "type": "number", "default": 0, "description": "Distance of nearest point in front of VP in mm" },
+        "restingCondition": { "type": "string", "description": "Textual note on resting condition (e.g. corner on HP, edge parallel to VP)" }
+      },
+      "additionalProperties": false
+    },
+    "expected": {
+      "type": "object",
+      "description": "Key geometric dimensions read from the published textbook solution drawing.",
+      "properties": {
+        "frontView": {
+          "type": "object",
+          "properties": {
+            "height": { "type": "number", "description": "Overall bounding height in elevation (mm)" },
+            "width": { "type": "number", "description": "Overall bounding width in elevation (mm)" },
+            "minZ": { "type": "number", "description": "Lowest Z elevation in mm" },
+            "maxZ": { "type": "number", "description": "Highest Z elevation in mm" },
+            "apparentAxisLength": { "type": "number", "description": "Apparent length of axis in elevation (mm)" },
+            "apparentAxisAngleDeg": { "type": "number", "description": "Apparent angle of axis with XY line in degrees" }
+          },
+          "additionalProperties": false
+        },
+        "topView": {
+          "type": "object",
+          "properties": {
+            "length": { "type": "number", "description": "Overall plan dimension along Y or length (mm)" },
+            "width": { "type": "number", "description": "Overall plan width along X (mm)" },
+            "apparentAxisLength": { "type": "number", "description": "Apparent foreshortened axis length in plan (mm)" },
+            "apparentAxisAngleDeg": { "type": "number", "description": "Apparent angle beta of axis in plan with XY in degrees" }
+          },
+          "additionalProperties": false
+        },
+        "sideView": {
+          "type": "object",
+          "properties": {
+            "height": { "type": "number", "description": "Overall height in profile view (mm)" },
+            "width": { "type": "number", "description": "Overall width in profile view (mm)" }
+          },
+          "additionalProperties": false
+        },
+        "keyPoints": {
+          "type": "object",
+          "description": "Expected 2D coordinates of specific landmark points (e.g. apex, base center)",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "front": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+              "top": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+              "side": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "needsHumanCheck": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag indicating this problem has ambiguous wording or contradictory published dimensions in the textbook."
+    },
+    "humanCheckReason": {
+      "type": "string",
+      "description": "Detailed explanation of why human verification or editorial review is required."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Pedagogical commentary, textbook methodology notes, or derivation steps."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,65 @@
+{
+  "id": "cone_inclined_both",
+  "topic": "PROJECTION_OF_SOLIDS",
+  "shape": "CONE",
+  "param_schema": {
+    "baseDia": {
+      "min": 40,
+      "max": 50,
+      "step": 5,
+      "unit": "mm",
+      "description": "Base diameter of cone"
+    },
+    "height": {
+      "min": 55,
+      "max": 75,
+      "step": 5,
+      "unit": "mm",
+      "description": "Axis length of cone"
+    },
+    "theta": {
+      "min": 30,
+      "max": 45,
+      "step": 5,
+      "unit": "deg",
+      "description": "Axis inclination to HP"
+    },
+    "phi": {
+      "min": 20,
+      "max": 35,
+      "step": 5,
+      "unit": "deg",
+      "description": "Axis inclination to VP"
+    },
+    "distVP": {
+      "min": 20,
+      "max": 35,
+      "step": 5,
+      "unit": "mm",
+      "description": "Apex distance in front of VP"
+    }
+  },
+  "placement_rules": {
+    "restingPlane": "HP",
+    "restingFeature": "generator",
+    "axisAlignmentStage1": "PERPENDICULAR_TO_HP",
+    "tiltStage2": "TILT_TO_HP",
+    "tiltStage3": "TILT_TO_VP"
+  },
+  "views_required": ["FRONT_VIEW", "TOP_VIEW"],
+  "validity_predicates": {
+    "requireFirstQuadrant": true,
+    "maxCombinedTiltDeg": 75,
+    "minFeatureSizeMm": 3,
+    "minApparentLengthMm": 20,
+    "maxSheetWidthMm": 420,
+    "maxSheetHeightMm": 280
+  },
+  "rubric": {
+    "recall": 0.25,
+    "precision": 0.35,
+    "lineType": 0.25,
+    "dimensions": 0.15
+  },
+  "statement": "A cone of base {baseDia} mm diameter and axis {height} mm long rests on the HP on a point of its base circumference. Its axis is inclined at {theta}° to the HP and {phi}° to the VP, with its apex situated {distVP} mm in front of the VP. Draw its front and top views."
+}

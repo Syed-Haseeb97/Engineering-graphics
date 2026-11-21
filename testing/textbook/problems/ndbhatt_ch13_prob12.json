@@ -1,0 +1,38 @@
+{
+  "id": "ndbhatt_ch13_prob12",
+  "source": {
+    "book": "Elementary Engineering Drawing",
+    "author": "N.D. Bhatt",
+    "chapter": 13,
+    "problemNumber": 12,
+    "page": 315
+  },
+  "statement": "A regular pentagonal pyramid, base 30 mm side and axis 60 mm long, has one of its slant edges on the H.P. and the plan of that edge makes an angle of 45° with the V.P. Draw its projections.",
+  "solid": {
+    "type": "PYRAMID",
+    "sides": 5,
+    "baseSize": 30,
+    "height": 60
+  },
+  "placement": {
+    "initialAxis": "PERPENDICULAR_TO_HP",
+    "thetaDeg": 22.45,
+    "thetaRad": 0.3918,
+    "phiDeg": 45,
+    "phiRad": 0.7853981634,
+    "distanceHP": 0,
+    "distanceVP": 20,
+    "restingCondition": "Slant edge on HP in stage 2; plan of slant edge inclined at 45° to VP in stage 3"
+  },
+  "expected": {
+    "frontView": {
+      "apparentAxisLength": 45.39
+    },
+    "topView": {
+      "apparentAxisLength": 55.43
+    }
+  },
+  "needsHumanCheck": true,
+  "humanCheckReason": "Ambiguous textbook interpretation: 'plan of edge makes 45° with VP' vs 'true edge makes 45° with VP'. In Bhatt 53rd ed., it is solved by directly rotating the stage 2 plan by 45° (apparent angle beta = 45°), whereas some university question papers require locus method for true inclination phi = 45°.",
+  "notes": "Circumradius R = 30 / (2 * sin(36°)) = 25.52 mm. Slant edge length = sqrt(60^2 + 25.52^2) = 65.20 mm. Axis tilt angle theta = arcsin(R / slantEdge) = 22.45°."
+}

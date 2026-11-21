@@ -1,0 +1,36 @@
+{
+  "id": "ndbhatt_ch13_prob07",
+  "source": {
+    "book": "Elementary Engineering Drawing",
+    "author": "N.D. Bhatt",
+    "chapter": 13,
+    "problemNumber": 7,
+    "page": 308
+  },
+  "statement": "A cone, base 40 mm diameter and axis 60 mm long, has its base on the H.P. It is tilted so that it rests on one of its generators on the H.P., with the axis parallel to the V.P. Draw its projections.",
+  "solid": {
+    "type": "CONE",
+    "baseSize": 20,
+    "height": 60
+  },
+  "placement": {
+    "initialAxis": "PERPENDICULAR_TO_HP",
+    "thetaDeg": 18.43,
+    "thetaRad": 0.32175,
+    "distanceHP": 0,
+    "distanceVP": 20,
+    "restingCondition": "Resting on one generator on HP; axis tilted at semi-apex angle alpha = arctan(20/60) = 18.43°"
+  },
+  "expected": {
+    "frontView": {
+      "apparentAxisLength": 60,
+      "apparentAxisAngleDeg": 18.43
+    },
+    "topView": {
+      "apparentAxisLength": 56.92
+    }
+  },
+  "needsHumanCheck": true,
+  "humanCheckReason": "Textbook states 'resting on generator'. Semi-apex angle alpha = arctan(20/60) = 18.4349°. Axis makes 18.43° with HP. Some editions round generator angle to 18° or 19°, causing +/- 0.5 mm variance.",
+  "notes": "Generator length is sqrt(60^2 + 20^2) = 63.245 mm. Axis foreshortened in top view to 60 * cos(18.435°) = 56.92 mm."
+}

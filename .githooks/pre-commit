@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Pre-commit hook: scan repository for committed secrets & keys
+echo "Running pre-commit secrets check..."
+npx tsx scripts/check-secrets.ts
+if [ $? -ne 0 ]; then
+  echo "Commit rejected: Committed secret or credentials detected."
+  exit 1
+fi
