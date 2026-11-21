@@ -1,8 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as path from 'path';
 
-// Force browser cache directory to Drive D:
-process.env.PLAYWRIGHT_BROWSERS_PATH = path.resolve(process.cwd(), '.playwright-browsers');
+// Force browser cache directory to Drive D: on local machines, unless in CI
+if (!process.env.CI && !process.env.PLAYWRIGHT_BROWSERS_PATH) {
+  process.env.PLAYWRIGHT_BROWSERS_PATH = path.resolve(process.cwd(), '.playwright-browsers');
+}
 
 export default defineConfig({
   testDir: './testing/e2e',
