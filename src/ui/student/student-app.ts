@@ -1,6 +1,6 @@
 import type { DraftEntity } from '../../draft/types';
 import { StudentApiClient } from './api-client';
-import { StudentStateManager, createLabProfile } from './state';
+import { StudentStateManager } from './state';
 import type { ScreenType, StudentProfile } from './types';
 import { renderAssignmentsView } from './views/assignments-view';
 import { renderLoginView } from './views/login-view';
