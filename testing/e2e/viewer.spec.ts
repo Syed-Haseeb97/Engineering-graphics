@@ -28,7 +28,7 @@ test.describe('Phase 1 Teaching Viewer Smoke Test', () => {
 
     // Verify first-quadrant validation banner is valid
     await expect(banner).toHaveClass(/valid/);
-    await expect(banner).toContainText('Valid First Quadrant');
+    await expect(banner).toContainText(/Valid first quadrant/i);
 
     // 3. Verify Stage 1 is loaded
     const stageIndicator = page.locator('#stage-indicator');

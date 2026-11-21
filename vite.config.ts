@@ -53,7 +53,7 @@ function brotliAndImmutableHeadersPlugin(): Plugin {
           } else if (entry.endsWith('.wasm')) {
             const content = fs.readFileSync(fullPath);
             const br = zlib.brotliCompressSync(content, {
-              params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 11 },
+              params: { [zlib.constants.BROTLI_PARAM_QUALITY]: process.env.CI ? 4 : 5 },
             });
             fs.writeFileSync(`${fullPath}.br`, br);
           }
