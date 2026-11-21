@@ -131,9 +131,9 @@ export class ProjectionSheet2D {
         ${xyLine}
         ${x1y1Line}
         ${labels}
-        <g id="front" aria-label="Front view">${frontSvg}</g>
-        <g id="top" aria-label="Top view">${topSvg}</g>
-        <g id="side" aria-label="Side view">${sideSvg}</g>
+        <g id="front" role="group" aria-label="Front view">${frontSvg}</g>
+        <g id="top" role="group" aria-label="Top view">${topSvg}</g>
+        <g id="side" role="group" aria-label="Side view">${sideSvg}</g>
       </svg>
     `;
   }

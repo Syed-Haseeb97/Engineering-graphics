@@ -19,12 +19,8 @@ export class TeachingViewerApp {
     this.initUI();
     this.initListeners();
     this.setLoading(true);
-    // Initial compute scheduled after first paint
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      window.requestIdleCallback(() => void this.triggerCompute(), { timeout: 1500 });
-    } else {
-      setTimeout(() => void this.triggerCompute(), 30);
-    }
+    // Initial compute
+    setTimeout(() => void this.triggerCompute(), 0);
   }
 
   private initUI(): void {

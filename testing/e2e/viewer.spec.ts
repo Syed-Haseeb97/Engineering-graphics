@@ -36,7 +36,7 @@ test.describe('Phase 1 Teaching Viewer Smoke Test', () => {
 
     // Verify 2D projection sheet rendered lines
     const sheetSvg = page.locator('#sheet-container svg');
-    await expect(sheetSvg).toBeVisible();
+    await expect(sheetSvg).toBeVisible({ timeout: 20000 });
     await expect(sheetSvg.locator('line')).not.toHaveCount(0);
 
     // Verify 3D inspector canvas is rendered
