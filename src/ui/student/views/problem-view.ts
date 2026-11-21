@@ -82,7 +82,7 @@ export class ProblemView {
             <div class="problem-statement-text" id="problem-statement" tabindex="0">
               ${problem.statement}
             </div>
-            <div class="param-chips" id="param-chips" aria-label="Problem parameters">
+            <div class="param-chips" id="param-chips" tabindex="0" role="region" aria-label="Problem parameters">
               ${Object.entries(problem.publicParams)
                 .map(([k, v]) => `<span class="param-chip" role="text"><strong>${k}:</strong> ${v}</span>`)
                 .join('')}
