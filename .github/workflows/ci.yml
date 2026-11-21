@@ -45,6 +45,9 @@ jobs:
           SKIP_FREECAD: '1'
         run: npm run test:oracle
 
+      - name: Build Application (vite build)
+        run: npm run build
+
       - name: Install Playwright Browsers & OS Dependencies
         run: npx playwright install --with-deps chromium firefox webkit
 
